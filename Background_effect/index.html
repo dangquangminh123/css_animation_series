@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Effect</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2><span>My first video on</span><br>AnimateJS</h2>
+    </div>
+
+    <script src="./anime.min.js"></script>
+    <script>
+        const container = document.querySelector('.container');
+        for (var i = 0; i <= 100; i++) {
+            const blocks = document.createElement('div');
+            blocks.classList.add('block');
+            container.appendChild(blocks);
+        }
+        //Thư viện animeJS
+        function animateBlocks() {
+            anime({
+                targets: '.block',
+                translateX: function(){
+                    return anime.random(-700,700);
+                },
+                translateY: function(){
+                    return anime.random(-500,500);
+                },
+                scale: function() {
+                    return anime.random(1,5);
+                },
+
+                easing: 'linear',//Kiểu biến đổi
+                duration: 3000, //Khoảng thời gian biến đổi
+                delay: anime.stagger(10), //số phần tử con trong ảnh được tạo hiệu ứng anime
+                complete:animateBlocks,
+            })
+        }
+
+        animateBlocks();
+    </script>
+</body>
+</html>
